@@ -15,10 +15,19 @@ public class BlogServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException
 	{
-		int id = Integer.parseInt(req.getParameter("id")); 
-		String name= req.getParameter("name"); 
-	 	String number= req.getParameter("number");
-		String email= req.getParameter("email");
+		String idStr = req.getParameter("id").trim();
+		int id = 0;
+		try {
+		    id = Integer.parseInt(idStr);
+		} catch (NumberFormatException e) {
+		    // Redirect to error page or set default
+		    res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid ID format");
+		    return;
+		}
+		String name = req.getParameter("name").trim();
+		String number = req.getParameter("number").trim();
+		String email = req.getParameter("email").trim();
+
 		
 		Blog bo=new Blog(); 
 		bo.setId(id);
