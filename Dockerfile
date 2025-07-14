@@ -18,3 +18,4 @@ COPY --from=builder /app/target/hibermainproject.war /usr/local/tomcat/webapps/R
 EXPOSE 8080
 
 CMD ["catalina.sh", "run"]
+
